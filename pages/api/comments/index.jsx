@@ -6,7 +6,7 @@ export default function handler(req, res) {
   } else if (req.method === "POST") {
     const comment = req.body.comment;
     const newComment = {
-      id: Date.now(),
+      id: Date.now(), //Date.now() gives unique id for production
       text: comment,
     };
     comments.push(newComment);

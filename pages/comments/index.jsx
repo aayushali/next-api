@@ -7,6 +7,7 @@ function CommentsPage() {
   const [comments, setComments] = useState([]);
 
   const [comment, setComment] = useState(""); // This holds the input value
+
   const fetchComments = async () => {
     const response = await fetch("/api/comments");
     const data = await response.json();
@@ -24,6 +25,16 @@ function CommentsPage() {
     const data = await response.json();
     console.log(data);
   };
+
+  //Deleting comment
+  const deleteComment = async () => {
+    const response = await fetch("/api/comments/${commentId}", {
+      method: "DELETE",
+    });
+    const data = await response.json();
+    console.log(data);
+    fetchComments();
+  };
   return (
     <div>
       <input
@@ -36,6 +47,7 @@ function CommentsPage() {
       {comments.map((comment) => (
         <div key={comment.id}>
           {comment.id} {comment.text}
+          <button onClick={() => deleteComment(comment.id)}>Delete</button>
         </div>
       ))}
     </div>
