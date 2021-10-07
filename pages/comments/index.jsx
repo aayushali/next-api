@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
+// handling get request
 function CommentsPage() {
   const [comments, setComments] = useState([]);
   const fetchComments = async () => {
